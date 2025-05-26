@@ -1,0 +1,6 @@
+*.key
+*.pem
+id_*
+*.env
+*.crt
+*.p12

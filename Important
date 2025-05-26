@@ -1,0 +1,22 @@
+# Set env
+export PREFIX="$HOME/opt/cross"
+export TARGET=i686-elf
+export PATH="$PREFIX/bin:$PATH"
+
+# Download & build binutils
+cd ~
+wget https://ftp.gnu.org/gnu/binutils/binutils-2.40.tar.gz
+tar -xzf binutils-2.40.tar.gz
+mkdir build-binutils && cd build-binutils
+../binutils-2.40/configure --target=$TARGET --prefix=$PREFIX --with-sysroot --disable-nls --disable-werror
+make -j$(nproc)
+make install
+
+# Download & build GCC
+cd ~
+wget https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.gz
+tar -xzf gcc-13.2.0.tar.gz
+mkdir build-gcc && cd build-gcc
+../gcc-13.2.0/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c --without-headers
+make -j$(nproc) all-gcc
+make install-gcc
