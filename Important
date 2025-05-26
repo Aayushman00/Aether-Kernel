@@ -20,3 +20,10 @@ mkdir build-gcc && cd build-gcc
 ../gcc-13.2.0/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c --without-headers
 make -j$(nproc) all-gcc
 make install-gcc
+
+#verify it Works
+i686-elf-gcc --version
+
+#go to the directory and the run 
+cd /mnt/c/Users/ANANT\ RAJ/OneDrive/Desktop/coding/OS
+make run
